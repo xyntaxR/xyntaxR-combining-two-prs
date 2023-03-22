@@ -34,7 +34,10 @@ class GitCommand {
         }
         else if (path_file == '*') {
             this.staging.push(modified_files["views/index.html"]);
-            delete modified_files["views/index.html"];
+
+        else if (path_file == '.') {
+            this.staging = Object.values(modified_files);
+            this.working_directory.new_changes = {};
         }
         else {
             return `Failed to add ${path_file}! File is not modified or missing.`;
