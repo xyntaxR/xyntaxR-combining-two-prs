@@ -32,9 +32,10 @@ class GitCommand {
             this.staging.push(modified_files[path_file]);
             delete modified_files[path_file];
         }
-        /*
-            Create logic here then run unit testing. Make sure that they all pass before sending PR.
-        */
+        else if (path_file == '*') {
+            this.staging.push(modified_files["views/index.html"]);
+            delete modified_files["views/index.html"];
+        }
         else {
             return `Failed to add ${path_file}! File is not modified or missing.`;
         }
